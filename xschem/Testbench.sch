@@ -25,19 +25,13 @@ N 380 -360 380 -340 {
 lab=vss}
 N 380 -460 380 -420 {
 lab=vref}
-N -70 -110 -20 -110 {
+N -70 -120 -20 -120 {
 lab=vref}
-N 500 -360 500 -330 {
+N 500 -360 500 -340 {
 lab=vss}
 N 500 -460 500 -420 {
-lab=vgb}
-N -70 -130 -20 -130 {
-lab=vgb}
-N 600 -360 600 -340 {
-lab=vss}
-N 600 -460 600 -420 {
 lab=vgf}
-N -70 -90 -20 -90 {
+N -70 -100 -20 -100 {
 lab=vgf}
 N -210 -80 -210 -60 {
 lab=in}
@@ -46,15 +40,6 @@ lab=in}
 N -210 -190 -210 -140 {
 lab=vdd}
 C {CurrentTrigger.sym} 0 0 0 0 {name=x1}
-C {devices/code.sym} -550 -410 0 0 {name=TT_MODELS
-only_toplevel=true
-format="tcleval( @value )"
-value="
-** opencircuitdesign pdks install
-.lib $::SKYWATER_MODELS/sky130.lib.spice tt
-
-"
-spice_ignore=false}
 C {devices/launcher.sym} -250 -380 0 0 {name=h17 
 descr="Load waves" 
 tclcommand="
@@ -85,15 +70,11 @@ C {devices/opin.sym} 490 -80 0 0 {name=p6 lab=out}
 C {devices/vsource.sym} 380 -390 0 0 {name=V3 value=0.9 savecurrent=true}
 C {devices/lab_pin.sym} 380 -340 0 0 {name=p7 sig_type=std_logic lab=vss}
 C {devices/lab_pin.sym} 380 -460 0 0 {name=p8 sig_type=std_logic lab=vref}
-C {devices/lab_pin.sym} -70 -110 0 0 {name=p9 sig_type=std_logic lab=vref}
-C {devices/vsource.sym} 500 -390 0 0 {name=V4 value=1 savecurrent=true}
-C {devices/lab_pin.sym} 500 -330 0 0 {name=p10 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 500 -460 0 0 {name=p11 sig_type=std_logic lab=vgb}
-C {devices/lab_pin.sym} -70 -130 0 0 {name=p12 sig_type=std_logic lab=vgb}
-C {devices/vsource.sym} 600 -390 0 0 {name=V5 value=1.7 savecurrent=true}
-C {devices/lab_pin.sym} 600 -340 0 0 {name=p13 sig_type=std_logic lab=vss}
-C {devices/lab_pin.sym} 600 -460 0 0 {name=p14 sig_type=std_logic lab=vgf}
-C {devices/lab_pin.sym} -70 -90 0 0 {name=p15 sig_type=std_logic lab=vgf}
+C {devices/lab_pin.sym} -70 -120 0 0 {name=p9 sig_type=std_logic lab=vref}
+C {devices/vsource.sym} 500 -390 0 0 {name=V5 value=1.7 savecurrent=true}
+C {devices/lab_pin.sym} 500 -340 0 0 {name=p13 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 500 -460 0 0 {name=p14 sig_type=std_logic lab=vgf}
+C {devices/lab_pin.sym} -70 -100 0 0 {name=p15 sig_type=std_logic lab=vgf}
 C {devices/isource.sym} -210 -110 0 0 {name=I0 value=0}
 C {devices/lab_pin.sym} -210 -190 0 0 {name=p16 sig_type=std_logic lab=vdd}
 C {devices/lab_wire.sym} -130 -60 0 0 {name=p17 sig_type=std_logic lab=in}
@@ -107,9 +88,11 @@ value="
   save all
   op
   write Testbench.raw
+  quit 0
 .endc
 "}
 C {devices/launcher.sym} -250 -340 0 0 {name=h1
 descr="Annotate OP" 
 tclcommand="set show_hidden_texts 1; xschem annotate_op"
 }
+C {sky130_fd_pr/corner.sym} -560 -410 0 0 {name=CORNER only_toplevel=true corner=tt}
