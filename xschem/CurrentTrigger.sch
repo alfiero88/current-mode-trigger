@@ -50,11 +50,7 @@ lab=out1}
 N 110 30 210 30 {
 lab=g2}
 N 50 -430 100 -430 {
-lab=out1}
-N 100 -430 100 -370 {
-lab=out1}
-N 100 -370 250 -370 {
-lab=out1}
+lab=out3}
 N -210 60 -210 100 {
 lab=vss}
 N -210 100 250 100 {
@@ -191,10 +187,6 @@ N 270 -460 270 -420 {
 lab=vdd}
 N 250 -460 270 -460 {
 lab=vdd}
-N -100 -320 10 -320 {
-lab=vdd}
-N -100 -560 -100 -320 {
-lab=vdd}
 N -590 -130 -590 -60 {
 lab=vm}
 N -380 -200 -380 -60 {
@@ -282,27 +274,31 @@ lab=i_n}
 N -770 40 -770 140 {
 lab=i_n}
 N -830 -160 -810 -160 {
-lab=#net2}
+lab=dcon}
 N -810 -220 -810 -160 {
-lab=#net2}
+lab=dcon}
 N -870 -220 -810 -220 {
-lab=#net2}
+lab=dcon}
 N -990 -160 -870 -160 {
 lab=vss}
 N -870 -270 -870 -190 {
-lab=#net2}
+lab=dcon}
 N -830 -300 -810 -300 {
-lab=#net2}
+lab=dcon}
 N -810 -300 -810 -240 {
-lab=#net2}
+lab=dcon}
 N -870 -240 -810 -240 {
-lab=#net2}
+lab=dcon}
 N -870 -420 -870 -330 {
 lab=vgb}
 N -870 -130 -870 10 {
 lab=i_n}
 N -990 -300 -870 -300 {
 lab=vdd}
+N 100 -430 100 -370 {
+lab=out3}
+N -100 -320 10 -320 {
+lab=vss}
 C {sky130_fd_pr/nfet_01v8_lvt.sym} 230 30 0 0 {name=M1
 L=1
 W=3
@@ -335,7 +331,7 @@ C {devices/iopin.sym} -520 -740 0 0 {name=p1 lab=vdd}
 C {devices/iopin.sym} -520 -680 0 0 {name=p2 lab=vss}
 C {sky130_fd_pr/pfet_01v8_lvt.sym} -230 -130 0 0 {name=M3
 L=0.35
-W=1
+W=15
 nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
@@ -393,20 +389,6 @@ C {sky130_fd_pr/pfet_01v8_lvt.sym} 30 -430 0 1 {name=M7
 L=0.35
 W=5
 nf=5
-mult=1
-ad="'int((nf+1)/2) * W/nf * 0.29'" 
-pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
-as="'int((nf+2)/2) * W/nf * 0.29'" 
-ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
-nrd="'0.29 / W'" nrs="'0.29 / W'"
-sa=0 sb=0 sd=0
-model=pfet_01v8_lvt
-spiceprefix=X
-}
-C {sky130_fd_pr/pfet_01v8_lvt.sym} 30 -320 0 1 {name=M8
-L=2
-W=3
-nf=1
 mult=1
 ad="'int((nf+1)/2) * W/nf * 0.29'" 
 pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
@@ -617,3 +599,23 @@ model=pfet_01v8_lvt
 spiceprefix=X
 }
 C {devices/lab_wire.sym} -990 -300 0 0 {name=p20 sig_type=std_logic lab=vdd}
+C {devices/lab_wire.sym} -870 -230 0 0 {name=p21 sig_type=std_logic lab=dcon}
+C {devices/ngspice_probe.sym} -800 -380 0 0 {name=r1}
+C {devices/ngspice_probe.sym} -810 -240 0 0 {name=r2}
+C {devices/ngspice_probe.sym} 160 -510 0 0 {name=r3}
+C {sky130_fd_pr/nfet_01v8_lvt.sym} 30 -320 0 1 {name=M8
+L=2
+W=3
+nf=3
+mult=1
+ad="'int((nf+1)/2) * W/nf * 0.29'" 
+pd="'2*int((nf+1)/2) * (W/nf + 0.29)'"
+as="'int((nf+2)/2) * W/nf * 0.29'" 
+ps="'2*int((nf+2)/2) * (W/nf + 0.29)'"
+nrd="'0.29 / W'" nrs="'0.29 / W'"
+sa=0 sb=0 sd=0
+model=nfet_01v8_lvt
+spiceprefix=X
+}
+C {devices/lab_wire.sym} -100 -320 0 0 {name=p23 sig_type=std_logic lab=vss}
+C {devices/lab_wire.sym} 100 -370 2 0 {name=p22 sig_type=std_logic lab=out3}
