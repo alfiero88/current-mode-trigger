@@ -36,7 +36,7 @@ divy=5
 subdivy=1
 unity=1
 x1=0
-x2=0.002
+x2=8e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -59,8 +59,8 @@ ypos2=2
 divy=5
 subdivy=1
 unity=1
-x1=-4.7767234e-08
-x2=8.7129741e-07
+x1=0
+x2=8e-07
 divx=5
 subdivx=1
 xlabmag=1.0
@@ -114,9 +114,9 @@ N 60 630 60 680 {
 lab=vss}
 N 220 550 350 550 {
 lab=#net2}
-N 300 550 300 570 {
+N 440 550 440 570 {
 lab=#net2}
-N 300 630 300 680 {
+N 440 630 440 680 {
 lab=vss}
 N 410 550 470 550 {
 lab=out_SiPM}
@@ -193,12 +193,18 @@ lab=trg}
 N -680 840 -680 920 {
 lab=A}
 N -680 980 -680 1010 {
-lab=in_SiPM}
+lab=#net8}
 N -140 570 -10 570 {
 lab=in_SiPM}
-N -680 1010 -140 1010 {
-lab=in_SiPM}
 N -140 570 -140 1010 {
+lab=in_SiPM}
+N -340 1010 -140 1010 {
+lab=in_SiPM}
+N -680 1010 -400 1010 {
+lab=#net8}
+N -260 1100 -260 1150 {
+lab=vss}
+N -260 1010 -260 1040 {
 lab=in_SiPM}
 C {CurrentTrigger.sym} 0 0 0 0 {name=x1}
 C {devices/launcher.sym} -250 -390 0 0 {name=h17 
@@ -242,12 +248,12 @@ C {devices/simulator_commands_shown.sym} -1140 -500 0 0 {name=COMMANDS1
 simulator=ngspice
 only_toplevel=false 
 value="
-.param Nf = 10
-.param N = 3600
-.param Rq = 290000
+.param Nf = 1
+.param N = 1100
+.param Rq = 750000
 .param Rd = 1k
-.param Cd = 78f
-.param Cq = 8f
+.param Cd = 45f
+.param Cq = 4f
 .param Cm = 1f
 .param Np = 'N-Nf'
 .param RqNf = 'Rq / Nf'
@@ -291,7 +297,7 @@ C {devices/lab_wire.sym} -90 -60 0 0 {name=p10 sig_type=std_logic lab=in}
 C {CurrentTrigger.sym} 10 630 0 0 {name=x2}
 C {devices/lab_pin.sym} 60 420 0 0 {name=p11 sig_type=std_logic lab=vdd}
 C {devices/lab_pin.sym} 60 680 0 0 {name=p12 sig_type=std_logic lab=vss}
-C {devices/capa.sym} 300 600 0 0 {name=C2
+C {devices/capa.sym} 440 600 0 0 {name=C2
 m=1
 value=5p
 footprint=1206
@@ -301,7 +307,7 @@ value=500
 footprint=1206
 device=resistor
 m=1}
-C {devices/lab_pin.sym} 300 680 0 0 {name=p17 sig_type=std_logic lab=vss}
+C {devices/lab_pin.sym} 440 680 0 0 {name=p17 sig_type=std_logic lab=vss}
 C {devices/opin.sym} 470 550 0 0 {name=p18 lab=out_SiPM}
 C {devices/lab_pin.sym} -70 510 0 0 {name=p19 sig_type=std_logic lab=vref}
 C {devices/lab_pin.sym} -70 530 0 0 {name=p20 sig_type=std_logic lab=vgf}
@@ -311,50 +317,50 @@ footprint=1206
 device=resistor
 m=1}
 C {devices/res.sym} -680 400 2 0 {name=R3
-value=RqNf
+value=\{RqNf\}
 footprint=1206
 device=resistor
 m=1}
 C {devices/res.sym} -680 680 2 0 {name=R4
-value=RdNf
+value=\{RdNf\}
 footprint=1206
 device=resistor
 m=1}
-C {devices/vsource.sym} -680 780 0 0 {name=VBD value=70.5 savecurrent=false}
+C {devices/vsource.sym} -680 780 0 0 {name=VBD value=32 savecurrent=false}
 C {devices/capa.sym} -590 400 0 0 {name=C3
 m=1
-value=CqNf
+value=\{CqNf\}
 footprint=1206
 device="ceramic capacitor"}
 C {devices/capa.sym} -590 680 0 0 {name=C4
 m=1
-value=CdNf
+value=\{CdNf\}
 footprint=1206
 device="ceramic capacitor"}
 C {devices/res.sym} -440 400 2 0 {name=R6
-value=RqNp
+value=\{RqNp\}
 footprint=1206
 device=resistor
 m=1}
 C {devices/capa.sym} -250 520 0 0 {name=C5
 m=1
-value=CmN
+value=\{CmN\}
 footprint=1206
 device="ceramic capacitor"}
 C {devices/capa.sym} -360 400 0 0 {name=C6
 m=1
-value=CqNp
+value=\{CqNp\}
 footprint=1206
 device="ceramic capacitor"}
 C {devices/capa.sym} -400 630 0 0 {name=C7
 m=1
-value=CdNp
+value=\{CdNp\}
 footprint=1206
 device="ceramic capacitor"}
 C {devices/gnd.sym} -740 610 0 0 {name=l3 lab=GND}
 C {devices/lab_wire.sym} -510 330 0 0 {name=p21 sig_type=std_logic lab=K}
 C {devices/lab_wire.sym} -480 840 0 0 {name=p22 sig_type=std_logic lab=A}
-C {devices/vsource.sym} -930 380 0 0 {name=VBias value=73.8 savecurrent=false}
+C {devices/vsource.sym} -930 380 0 0 {name=VBias value=37 savecurrent=false}
 C {devices/gnd.sym} -930 410 0 0 {name=l4 lab=GND}
 C {devices/vsource.sym} -860 600 0 1 {name=Vtrg value="DC 0 pulse(0 1 20n 1p 1p 600p 1m)" savecurrent=false}
 C {devices/gnd.sym} -860 630 0 0 {name=l5 lab=GND}
@@ -362,3 +368,14 @@ C {devices/switch_ngspice.sym} -680 570 0 0 {name=S1 model=SWITCH1}
 C {devices/lab_wire.sym} -780 570 0 0 {name=p23 sig_type=std_logic lab=trg}
 C {devices/ammeter.sym} -680 950 0 0 {name=Vmeas savecurrent=true}
 C {devices/lab_pin.sym} -140 570 0 0 {name=p24 sig_type=std_logic lab=in_SiPM}
+C {devices/res.sym} -370 1010 1 0 {name=R7
+value=500
+footprint=1206
+device=resistor
+m=1}
+C {devices/capa.sym} -260 1070 0 0 {name=C8
+m=1
+value=5p
+footprint=1206
+device="ceramic capacitor"}
+C {devices/lab_pin.sym} -260 1150 0 0 {name=p25 sig_type=std_logic lab=vss}
