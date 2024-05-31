@@ -57,8 +57,8 @@ pinout:
   ua[1]: "input"
   ua[2]: "output"
   ua[3]: "input"
-  # ua[4]: ""
-  # ua[5]: ""
+  ua[4]: ""
+  ua[5]: ""
 
 # Do not change!
 yaml_version: 6
